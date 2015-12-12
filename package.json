@@ -1,0 +1,12 @@
+{
+  "name": "dnd_5_character_generator",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.4.2",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mysql": "^2.9.0",
+    "sequelize": "^3.14.0",
+    "sequelize-connect": "^1.2.0"
+  }
+}
