@@ -1,9 +1,13 @@
 var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
-var orm         = require('sequelize-connect');
+//var orm         = require('sequelize-connect');
 var Sequelize   = require('sequelize');
- 
+var db          = require('./lib/db');
+var sequelize   = db.sequelize;
+var Sequelize   = db.Sequelize;
+
+
 /**
 orm.discover = [__dirname + '/models'];
 
@@ -22,13 +26,12 @@ orm.connect(
 var Sequelize = orm.Sequelize;
 var sequelize = orm.sequelize;
 
- **/
-
 var sequelize   = new Sequelize('node_test', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   port: '3306'
 });
+ **/
 
 //var models    = orm.models;
 //var User      = models.User;
