@@ -2,7 +2,9 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var orm         = require('sequelize-connect');
+var Sequelize   = require('sequelize');
  
+/**
 orm.discover = [__dirname + '/models'];
 
 orm.connect(
@@ -17,9 +19,29 @@ orm.connect(
     console.log('Connection created.');
   });
 
-var models    = orm.models;
-var User      = models.User;
+var Sequelize = orm.Sequelize;
+var sequelize = orm.sequelize;
 
+ **/
+
+var sequelize   = new Sequelize('node_test', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql',
+  port: '3306'
+});
+
+//var models    = orm.models;
+//var User      = models.User;
+
+
+var User = sequelize.define('User', {
+  user_name: Sequelize.STRING,
+  first_name: Sequelize.STRING,
+  last_name: Sequelize.STRING,
+  email_address: Sequelize.STRING
+}, {
+  timestamps: false
+});
 
 var router = express.Router();
 /**
@@ -50,7 +72,7 @@ router.get('/', function(req, res) {
 router.post('/users', function(req, res) {
 
   console.log('Creating a user.');
-  
+
   User.create({
     user_name: 'user',
     first_name: 'first',
