@@ -17,21 +17,20 @@ orm.connect(
     console.log('Connection created.');
   });
 
-var sequelize = orm.sequelize;
-var Sequelize = orm.Sequelize;
 var models    = orm.models;
 var User      = models.User;
 
-//app.use('/test', './routes/users.js');
-
 var router = express.Router();
+var routes = require('./routes/users.js');
+app.use('/test', routes);
 
 // configure the port
 var port = process.env.PORT || 8080;
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-  // do logging
+
+  // log event
   console.log('Something is happening now.');
   next(); // move to the next routes and don't stop here
 });
@@ -41,21 +40,10 @@ router.get('/', function(req, res) {
   res.json({ message: 'hooray! welcome to my test api!' });
 });
 
+// ROUTE for '/users'
 router.post('/users', function(req, res) {
 
-  console.log('Create users.');
-
-  /**console.log('sequelize: ' + typeof sequelize);
-  console.log('Sequelize: ' + typeof Sequelize);
-  console.log('models: ' + typeof models);
-  console.log('Spell ' + typeof Spell);
-  
- for (var name in models) {
-  if (models.hasOwnProperty(name)) {
-    console.log(name);
-  }
-}
-**/
+  console.log('Creating a user.');
 
   User.create({
     user_name: 'user',
@@ -73,15 +61,6 @@ router.post('/users', function(req, res) {
   });
 
 });
-
-
-/**
-app.get('*', function(req, res) {
-    console.log('Index page served!');
-    res.sendfile('./client/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
-**/
-
 
 // START THE SERVER
 // ============================================================================
