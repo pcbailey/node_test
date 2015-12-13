@@ -20,9 +20,13 @@ orm.connect(
 var models    = orm.models;
 var User      = models.User;
 
+
 var router = express.Router();
-var routes = require('./routes/users.js');
-app.use('/test', routes);
+/**
+var routes = require('./routes/users');
+ **/
+ app.use('/test', router);
+
 
 // configure the port
 var port = process.env.PORT || 8080;
@@ -33,7 +37,9 @@ router.use(function(req, res, next) {
   // log event
   console.log('Something is happening now.');
   next(); // move to the next routes and don't stop here
+
 });
+
 
 // ROUTE for '/'
 router.get('/', function(req, res) {
@@ -44,7 +50,7 @@ router.get('/', function(req, res) {
 router.post('/users', function(req, res) {
 
   console.log('Creating a user.');
-
+  
   User.create({
     user_name: 'user',
     first_name: 'first',
@@ -61,6 +67,7 @@ router.post('/users', function(req, res) {
   });
 
 });
+
 
 // START THE SERVER
 // ============================================================================
