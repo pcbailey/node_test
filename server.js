@@ -36,7 +36,7 @@ var sequelize   = new Sequelize('node_test', 'root', '', {
 //var models    = orm.models;
 //var User      = models.User;
 
-
+/**
 var User = sequelize.define('User', {
   user_name: Sequelize.STRING,
   first_name: Sequelize.STRING,
@@ -45,12 +45,19 @@ var User = sequelize.define('User', {
 }, {
   timestamps: false
 });
+**/
+
+//var User = require('./models/user.model.js');
 
 var router = express.Router();
 /**
 var routes = require('./routes/users');
  **/
- app.use('/test', router);
+
+var users = require('./routes/users');
+
+app.use(bodyParser.json());
+app.use('/test/users', users);
 
 
 // configure the port
