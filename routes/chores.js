@@ -4,26 +4,24 @@ var router  = express.Router();
 
 // GET
 router.get('/', function(req, res) {
-    models.User.findAll({
-    }).then(function(users) {
-        res.json(users);
-        });
+    models.Chore.findAll({
+    }).then(function(chores) {
+        res.json(chores);
+    });
 });
 
 // POST
 router.post('/', function (req, res) {
 
-    console.log('Create users.');
+    console.log('Create chores.');
 
-    models.User.create({
-        user_name: 'user',
-        first_name: 'first',
-        last_name: 'last',
-        email_address: 'user@user.com'
+    models.Chore.create({
+        chore: 'chore',
+        due_date: 'now',
     })
-    .then(function (user) {
-        console.log("User created!");
-        res.json(user);
+    .then(function (chores) {
+        console.log("Chore created!");
+        res.json(chores);
     })
     .catch(function (error) {
         console.log("ops: " + error);

@@ -1,4 +1,5 @@
 "use strict";
+var models  = require('../models');
 
 module.exports = function (sequelize, DataTypes) {
 
@@ -7,7 +8,12 @@ module.exports = function (sequelize, DataTypes) {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email_address: DataTypes.STRING
-  }, {
+  },{
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Chore)
+      }
+    },
     timestamps: false
   });
 
